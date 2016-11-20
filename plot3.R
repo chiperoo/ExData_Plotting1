@@ -43,8 +43,8 @@ validData <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
 # make date-time
 validData$dateTime <- as.POSIXct(paste(validData$Date, validData$Time))
 
-# reset par
-dev.off()
+# save par
+old.par <- par(no.readonly = T)
 
 # set margins
 par(oma = c(0.5,0.5,0.5,0.5))
@@ -63,3 +63,6 @@ dev.copy(png, file="plot3.png")
 
 # close device handle
 dev.off()
+
+# restore par
+par(old.par)
